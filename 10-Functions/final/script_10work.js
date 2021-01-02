@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 //  A szöveg minden karakterét kisbetűre veszi + kitörli a szpészeket.
 const egySzoCsupaKisbetu = function (szoveg) {
   // A replace-ben egy reguláris kifejezés van, majd nézz utána.
@@ -23,3 +23,26 @@ const atalakito = function (szoveg, fuggveny) {
 };
 
 atalakito('KaKi KuKI Keki', elsoSzoCsupaNagybetu);
+*/
+
+let f;
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+h();
+f();
+console.dir(f);
