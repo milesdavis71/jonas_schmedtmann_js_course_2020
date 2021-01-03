@@ -23,7 +23,7 @@ const atalakito = function (szoveg, fuggveny) {
 };
 
 atalakito('KaKi KuKI Keki', elsoSzoCsupaNagybetu);
-*/
+
 
 let f;
 const g = function () {
@@ -46,3 +46,36 @@ console.dir(f);
 h();
 f();
 console.dir(f);
+
+const beszallas = function (utasszam, varakozas) {
+  const csoportraBontas = utasszam / 3;
+
+  // A kesleltetes callback függvény két paramétert fogad, egy anoním függvényt és egy értéket
+  setTimeout(function () {
+    console.log(`A ${utasszam} utas beszállása megkezdődik`);
+    console.log(`Mindegyik csoportban ${csoportraBontas} utas van.`);
+  }, varakozas * 1000);
+
+  console.log(`A bejelentkezés  ${varakozas} másodpercen belül elkezdődik.`);
+};
+
+beszallas(90, 3);
+
+
+// A külső függvényben a lezárásban a
+(function (arguments) {})()(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+*/
+
+// IIFE kétféle szintaxisa:
+(function () {
+  console.log('Csak egyszer fut le');
+})();
+
+// És működik nyíl függvényként is
+(() => console.log('Ez is csak egyszer fut le.'))();
