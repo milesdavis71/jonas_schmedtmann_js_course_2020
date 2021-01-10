@@ -81,3 +81,13 @@ const displayMOvements = function (movements) {
   });
 };
 displayMOvements(account1.movements);
+
+const calcAndDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} Fr`;
+};
+
+calcAndDisplayBalance(account1.movements);
+
+TODO;
+//  Ide még jön a computing username
