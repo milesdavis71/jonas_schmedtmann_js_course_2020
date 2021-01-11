@@ -1,5 +1,5 @@
 'use strict';
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [-200, 450, -400, 3000, -650, -130, 70, 1300];
 /*
 console.log('–––– for loop ––––');
 for (const movement of movements) {
@@ -23,7 +23,7 @@ movements.forEach((mov, i, arr) => {
 //  1: function(450);
 //  2: function(-400);
 //  3: function(3000);
-*/
+
 const movementsDescriptions = movements.map(
   (mov, i) =>
     `Penzmozgas ${i + 1}:  ${mov > 0 ? 'Atutatlal' : 'Atutatlak'} ${Math.abs(
@@ -31,3 +31,17 @@ const movementsDescriptions = movements.map(
     )} forintot`
 );
 console.log(movementsDescriptions);
+
+// Max érték
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
+*/
+
+const totalDepositsToForint = movements
+.filter(mov => mov>0)
+.map(mov => mov * 292)
+.reduce(acc, mov)=> acc + mov, 0;
+console.log(totalDepositsToForint);

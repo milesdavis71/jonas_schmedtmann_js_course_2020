@@ -89,5 +89,7 @@ const calcAndDisplayBalance = function (movements) {
 
 calcAndDisplayBalance(account1.movements);
 
-TODO;
+// Maximum érték
+
+// TODO;
 //  Ide még jön a computing username
