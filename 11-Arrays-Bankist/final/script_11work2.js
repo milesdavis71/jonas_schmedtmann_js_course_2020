@@ -86,10 +86,19 @@ const calcAndDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} Fr`;
 };
+const creatUserNames = function (accs) {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+creatUserNames(accounts);
 
-calcAndDisplayBalance(account1.movements);
-
-// Maximum érték
-
-// TODO;
-//  Ide még jön a computing username
+// Event handler
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  accounts.find((acc => acc.owner === intputLoginUsername.value);
+});
