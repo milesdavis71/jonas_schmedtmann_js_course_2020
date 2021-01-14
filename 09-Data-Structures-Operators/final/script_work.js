@@ -24,3 +24,5 @@ const restaurant = {
   // ES6 enhanced object literals
   openingHours,
 };
+
+console.log(restaurant.openingHours.mo);
