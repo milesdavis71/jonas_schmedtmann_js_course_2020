@@ -80,12 +80,30 @@ const displayMOvements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMOvements(account1.movements);
 
 const calcAndDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} Fr`;
 };
+
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} Ft`;
+
+  const outcomes = acc.movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)} Ft`;
+
+  const interest = acc.movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit + acc.interestRate) / 100)
+    .reduce((acc, deposit) => acc + deposit, 0);
+  labelSumInterest.textContent = `${interest} Ft`;
+};
+
 const creatUserNames = function (accs) {
   accs.forEach(acc => {
     acc.username = acc.owner
@@ -97,8 +115,34 @@ const creatUserNames = function (accs) {
 };
 creatUserNames(accounts);
 
+// itt csak a létrehozás történik meg (define), ezért „let”.
+// Adat majd csak később lesz hozzárendelve.
+let currentAccount;
+
 // Event handler
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
-  accounts.find((acc => acc.owner === intputLoginUsername.value);
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Üdv újra itt, ${currentAccount.owner}`;
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    //  Display movements
+    displayMOvements(currentAccount.movements);
+
+    // Display balance
+    calcAndDisplayBalance(currentAccount.movements);
+
+    // Display summary (ez majd később lesz megírva)
+    calcDisplaySummary(currentAccount);
+  }
 });
