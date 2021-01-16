@@ -91,5 +91,14 @@ console.log(restaurant.openingHours?.mon);
 for (const day of days) {
   // console.log(day);
   const open = restaurant.openingHours[day]?.open;
-  console.log(open);
+  console.log(`A ${day}-i napokon ${open}-kor nyitunk.`);
 }
+
+const kor = 18;
+kor >= 18 ? console.log('Sört iszok.') : console.log('Vizet iszok');
+
+const age = 20;
+console.log(`${age >= 20 ? 'Sört iszok.' : 'Vizet iszok.'}`);
+
+const text = '';
+console.log(`${text ? 'truthy' : 'falsy'}`);
