@@ -93,3 +93,5 @@ for (const day of days) {
   const open = restaurant.openingHours[day]?.open;
   console.log(open);
 }
+
+console.log(0 || 'Pitju');
