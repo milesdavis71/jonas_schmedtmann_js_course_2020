@@ -100,5 +100,6 @@ kor >= 18 ? console.log('Sört iszok.') : console.log('Vizet iszok');
 const age = 20;
 console.log(`${age >= 20 ? 'Sört iszok.' : 'Vizet iszok.'}`);
 
-const text = '';
-console.log(`${text ? 'truthy' : 'falsy'}`);
+const guests = 0;
+const guestCorrect = guests ?? 10;
+console.log(guestCorrect);
