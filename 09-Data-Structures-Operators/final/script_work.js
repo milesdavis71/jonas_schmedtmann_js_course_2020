@@ -84,22 +84,49 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
   openingHours,
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
 };
 
-console.log(restaurant.openingHours?.mon);
+// console.log(restaurant.openingHours?.mon);
 
-for (const day of days) {
-  // console.log(day);
-  const open = restaurant.openingHours[day]?.open;
-  console.log(`A ${day}-i napokon ${open}-kor nyitunk.`);
-}
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`A ${day}-i napokon ${open}-kor nyitunk.`);
+// }
 
-const kor = 18;
-kor >= 18 ? console.log('Sört iszok.') : console.log('Vizet iszok');
+console.log(restaurant.order?.(0, 1) ?? 'A metódus nem létezik');
+console.log(restaurant.orderValamit?.(0, 1) ?? 'A metódus nem létezik');
 
-const age = 20;
-console.log(`${age >= 20 ? 'Sört iszok.' : 'Vizet iszok.'}`);
+const users = [{ ne: 'Pitju', mail: 'huhu@hehe' }];
 
-const guests = 0;
-const guestCorrect = guests ?? 10;
-console.log(guestCorrect);
+console.log(users[0]?.name ?? 'A tömb üres');
+
+// const kor = 18;
+// kor >= 18 ? console.log('Sört iszok.') : console.log('Vizet iszok');
+
+// const age = 20;
+// console.log(`${age >= 20 ? 'Sört iszok.' : 'Vizet iszok.'}`);
+
+// const text = '';
+// console.log(`${text ? 'truthy' : 'falsy'}`);
+
+// console.log(0 || 'Pitju');
+
+// const tomb = [2, 3, 4];
+// const [uu, , pp] = tomb;
+// console.log(uu, pp);
+
+// const tomb = [2, 3, 4];
+// const [uu, , pp] = tomb;
+
+// const ujTomb = [2, 3, 4];
+// let [elso, , harmadik] = ujTomb;
+// [elso, harmadik] = [harmadik, elso];
+// console.log(elso, harmadik);
+
+// const [eloetel, foetel] = restaurant.order(2, 0);
+// console.log(eloetel, foetel);
+
+const tomb = [7, 8, 9];
