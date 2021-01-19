@@ -113,3 +113,23 @@ console.log(users[0]?.name ?? 'A tömb üres');
 // console.log(`${text ? 'truthy' : 'falsy'}`);
 
 // console.log(0 || 'Pitju');
+
+// const tomb = [2, 3, 4];
+// const [uu, , pp] = tomb;
+// console.log(uu, pp);
+
+// const tomb = [2, 3, 4];
+// const [uu, , pp] = tomb;
+
+// const ujTomb = [2, 3, 4];
+// let [elso, , harmadik] = ujTomb;
+// [elso, harmadik] = [harmadik, elso];
+// console.log(elso, harmadik);
+
+// const [eloetel, foetel] = restaurant.order(2, 0);
+// console.log(eloetel, foetel);
+
+const tomb = [7, 8, 9];
+
+const kiterjesztettTomb = [1, 2, ...tomb];
+console.log(kiterjesztettTomb);
