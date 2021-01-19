@@ -129,4 +129,19 @@ console.log(users[0]?.name ?? 'A tömb üres');
 // const [eloetel, foetel] = restaurant.order(2, 0);
 // console.log(eloetel, foetel);
 
-const tomb = [7, 8, 9];
+// const gyumolcsosStand = ['alma', 'banán', 'barack'];
+// const gyomolcsEladas = (elsoGyum, masodikGyum, harmadikGyum) => {
+//   console.log(`Gyümölcsök: ${elsoGyum}, ${masodikGyum}, ${harmadikGyum}`);
+// };
+// gyomolcsEladas(...gyumolcsosStand);
+
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+const szoveg = 'Pitj';
+const betuk = [...szoveg, ' ', 'H.'];
+console.log(betuk);
+// Kiírás: ["P", "i", "t", "j", " ", "H."]
+console.log(...szoveg);
+// Kiírás: P i t j
+console.log(`${...szoveg} Hevesi`);
