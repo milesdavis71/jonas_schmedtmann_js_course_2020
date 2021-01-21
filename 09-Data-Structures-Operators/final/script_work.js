@@ -87,6 +87,11 @@ const restaurant = {
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `A tésztád a következő összetevőkből áll: ${ing1}, ${ing2} és ${ing3}`
+    );
+  },
 };
 
 // console.log(restaurant.openingHours?.mon);
@@ -138,10 +143,34 @@ console.log(users[0]?.name ?? 'A tömb üres');
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // console.log(menu);
 
-const szoveg = 'Pitj';
-const betuk = [...szoveg, ' ', 'H.'];
-console.log(betuk);
-// Kiírás: ["P", "i", "t", "j", " ", "H."]
-console.log(...szoveg);
-// Kiírás: P i t j
-console.log(`${...szoveg} Hevesi`);
+// const szoveg = 'Pitj';
+// const betuk = [...szoveg, ' ', 'H.'];
+// console.log(betuk);
+// // Kiírás: ["P", "i", "t", "j", " ", "H."]
+// console.log(...szoveg);
+// // Kiírás: P i t j
+// console.log(`${...szoveg} Hevesi`);
+
+// const ingredients = [
+//   prompt('Készítsd el a saját pizzádat! Első összetevő: '),
+//   prompt('Második összetevő:'),
+//   prompt('Harmadik összetevő:'),
+// ];
+// restaurant.orderPasta(...ingredients);
+
+// const newREstaurant = { ...restaurant, founder: 'Jaki' };
+// console.log(newREstaurant);
+
+const arr = [1, 2, ...[3, 4]];
+console.log(arr);
+// Kiíratás: (4) [1, 2, 3, 4]
+
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+// Kiíratás: (3) [3, 4, 5]
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
