@@ -62,20 +62,20 @@
 // console.log(restaurant.openingHours);
 
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const openingHours = {
-  [days[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [days[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [days[5]]: {
-    open: 0, // Open 24 hours
-    close: 24,
-  },
-};
+// const openingHours = {
+//   [days[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [days[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [days[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
 
 const restaurant = {
   name: 'Classico Italiano',
@@ -83,16 +83,38 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours,
+  openingHours: {
+    thu: {
+      open: 12,
+    },
+    fri: {
+      open: 11,
+    },
+    sat: {
+      open: 24,
+    },
+  },
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderPasta: function (ing1, ing2, ing3) {
-    console.log(
-      `A tésztád a következő összetevőkből áll: ${ing1}, ${ing2} és ${ing3}`
-    );
-  },
 };
+
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
+//  Kiíratás: 23 7
+
+// Kiíratás: script_work.js:106 [] (4) ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
+
+// Kiíratás: Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
 
 // console.log(restaurant.openingHours?.mon);
 
@@ -101,12 +123,12 @@ const restaurant = {
 //   console.log(`A ${day}-i napokon ${open}-kor nyitunk.`);
 // }
 
-console.log(restaurant.order?.(0, 1) ?? 'A metódus nem létezik');
-console.log(restaurant.orderValamit?.(0, 1) ?? 'A metódus nem létezik');
+// console.log(restaurant.order?.(0, 1) ?? 'A metódus nem létezik');
+// console.log(restaurant.orderValamit?.(0, 1) ?? 'A metódus nem létezik');
 
-const users = [{ ne: 'Pitju', mail: 'huhu@hehe' }];
+// const users = [{ ne: 'Pitju', mail: 'huhu@hehe' }];
 
-console.log(users[0]?.name ?? 'A tömb üres');
+// console.log(users[0]?.name ?? 'A tömb üres');
 
 // const kor = 18;
 // kor >= 18 ? console.log('Sört iszok.') : console.log('Vizet iszok');
@@ -161,7 +183,7 @@ console.log(users[0]?.name ?? 'A tömb üres');
 // const newREstaurant = { ...restaurant, founder: 'Jaki' };
 // console.log(newREstaurant);
 
-const arr = [1, 2, ...[3, 4]];
+/*const arr = [1, 2, ...[3, 4]];
 console.log(arr);
 // Kiíratás: (4) [1, 2, 3, 4]
 
@@ -174,3 +196,4 @@ const [pizza, , risotto, ...otherFood] = [
   ...restaurant.starterMenu,
 ];
 console.log(pizza, risotto, otherFood);
+*/
