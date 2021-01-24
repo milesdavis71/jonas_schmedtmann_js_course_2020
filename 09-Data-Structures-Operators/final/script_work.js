@@ -49,15 +49,15 @@
 //   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
 //   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 //   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
-//   //  ES6 szintaxis => külső objektum beágyazása
-//   openingHours,
-
-//   //  ES6 szintaxis => metódus írása
-//   order(startIndex, mainIndex) {
-//     return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
+/*
+//  ES6 szintaxis => külső objektum beágyazása
+   openingHours,
+ //  ES6 szintaxis => metódus írása
+  order(startIndex, mainIndex) {// Ez a restaurant objektum tulajdonsága     return [this.starterMenu[startIndex], this
+.mainMenu[mainIndex]];
 //   },
 // };
+*/
 
 // console.log(restaurant.openingHours);
 
@@ -97,19 +97,56 @@ const restaurant = {
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
+  // Ez a restaurant objektum tulajdonsága
+  vasarlasKiszallitas: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    // A kiíratáshoz most van négy változónév
+    console.log(`
+        Rendelés érkezett ${time}-kor.
+        Kiszállítási cím: ${address}
+        ${this.starterMenu[starterIndex]} és ${this.mainMenu[mainIndex]}.`);
+  },
 };
 
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// Rendelés érkezett 18:30-kor.
+// Kiszállítási cím: Szabadkai ut 71.
+//     Garlic Bread és Risotto.
 
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+restaurant.vasarlasKiszallitas({
+  time: '18:30',
+  address: 'Szabadkai ut 71.',
+  mainIndex: 2,
+  starterIndex: 2,
+});
 
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
-({ a, b } = obj);
-console.log(a, b);
+restaurant.vasarlasKiszallitas({
+  address: 'Szabadkai ut 71.',
+  starterIndex: 2,
+});
+
+// Kiíratás:
+// Rendelés érkezett 20:00-kor.
+// Kiszállítási cím: Szabadkai ut 71.
+// Garlic Bread és Pizza.
+
+// KiíratásZ {time: "18:30", address: "Szabadkai ut 71.", mainIndex: 2, starterIndex: 2}
+
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+// ({ a, b } = obj);
+// console.log(a, b);
 //  Kiíratás: 23 7
 
 // Kiíratás: script_work.js:106 [] (4) ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
