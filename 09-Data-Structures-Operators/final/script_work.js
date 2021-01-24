@@ -233,4 +233,24 @@ const [pizza, , risotto, ...otherFood] = [
   ...restaurant.starterMenu,
 ];
 console.log(pizza, risotto, otherFood);
+
+// Objektumok
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+// Kiíratás: {thu: {…}, fri: {…}}
+
+const add = function (...numbers) {
+  console.log(numbers);
+};
+
+add(2, 3, 4), add(2, 5, 7, 8), add(2, 4, 5, 6, 7, 8, 9, 10);
+
+const x = [12, 24, 48];
+add(...x);
+
+restaurant.orderPizza('paradicsomszósz', 'parmezánsajt', 'gomba');
+// Kiíratás:
+// paradicsomszósz
+// (2) ["parmezánsajt", "gomba"]
+
 */
