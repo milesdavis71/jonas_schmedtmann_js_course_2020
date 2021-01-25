@@ -62,3 +62,17 @@ const game = {
     team2: 6.5,
   },
 };
+
+// const kiir = game.scored;
+// for (let i = 0; i < kiir.length; i++) {
+//   console.log(`Goal ${[i + 1]}: ${kiir[i]}`);
+// }
+
+// odds = game.odds;
+// for (const key in game.odds) {
+//   console.log(key);
+// }
+
+for (let i = 0; i < game.odds.length; i++) {
+  const element = game.odds.Object.value[i];
+}
