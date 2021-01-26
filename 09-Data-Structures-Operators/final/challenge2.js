@@ -72,7 +72,27 @@ const game = {
 // for (const key in game.odds) {
 //   console.log(key);
 // }
+fogadas = game.odds;
 
-for (let i = 0; i < game.odds.length; i++) {
-  const element = game.odds.Object.value[i];
+let entries = Object.entries(fogadas);
+for (let i = 0; i < entries.length; i++) {
+  let entry = entries[i][1];
+  entry = entry + entries[i][1];
+  avg = entry / entries.length;
+  const oddsText = 'győzelmének szorzója:';
+  console.log(
+    `A ${game.team1} ${oddsText} ${game.odds.team1}.
+A döntetlen szorzója: ${game.odds.x}.
+A ${game.team2} ${oddsText} ${game.odds.team2}. `
+  );
 }
+console.log(Number(avg).toFixed(2));
+
+const scorers = {
+  Gnarby: 1,
+  Hummels: 1,
+  Lewandowski: 2,
+};
+
+const newGame = { ...game, scorers };
+console.log(newGame);
