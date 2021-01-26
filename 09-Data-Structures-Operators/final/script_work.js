@@ -234,3 +234,10 @@ const [pizza, , risotto, ...otherFood] = [
 ];
 console.log(pizza, risotto, otherFood);
 */
+
+const menu = { ...starterMenu, ...mainMenu };
+for (const item of menu) console.log(item);
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i}: ${el}`);
+}
