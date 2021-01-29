@@ -87,13 +87,9 @@ const game = {
 //   );
 // }
 // console.log(Number(avg).toFixed(2));
-
-for (let i = 0; i < game.scored.length; i++) {
-  let cnt = 0;
-  let aktual = null;
-
-  if (cnt > 0) {
-    cnt = 1;
-    console.log(`${game.scored[i]}: ${cnt}`);
-  }
+const scorers = [];
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
+
+console.log(scorers);
