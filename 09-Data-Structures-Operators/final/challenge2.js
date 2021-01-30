@@ -88,11 +88,10 @@ A ${game.team2} ${oddsText} ${game.odds.team2}. `
 }
 console.log(Number(avg).toFixed(2));
 
-const scorers = {
-  Gnarby: 1,
-  Hummels: 1,
-  Lewandowski: 2,
-};
+// const newGame = { ...game, scorers };
+// console.log(newGame);
 
-const newGame = { ...game, scorers };
-console.log(newGame);
+const scorers = {};
+for (const player of game.scored) {
+  scorers.player? scorer);
+}
