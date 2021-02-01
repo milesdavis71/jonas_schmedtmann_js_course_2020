@@ -68,13 +68,15 @@ const game = {
 //   console.log(`Goal ${[i + 1]}: ${kiir[i]}`);
 // }
 
-// odds = game.odds;
-// for (const key in game.odds) {
-//   console.log(key);
-// }
-// fogadas = game.odds;
+odds = game.odds;
+fogadas = game.odds;
 
-// let entries = Object.entries(fogadas);
+let fogadasok = Object.entries(fogadas);
+for (const [team, odd] of Object.entries(fogadas)) {
+  const szoveg = team === 'x' ? 'draw' : `Victory: ${game[team]}`;
+  console.log(`Odd of ${szoveg}: ${odd}`);
+}
+
 // for (let i = 0; i < entries.length; i++) {
 //   let entry = entries[i][1];
 //   entry = entry + entries[i][1];
@@ -87,9 +89,9 @@ const game = {
 //   );
 // }
 // console.log(Number(avg).toFixed(2));
-const scorers = [];
-for (const player of game.scored) {
-  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-}
+// const scorers = [];
+// for (const player of game.scored) {
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
 
-console.log(scorers);
+// console.log(scorers);
