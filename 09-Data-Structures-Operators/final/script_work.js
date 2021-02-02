@@ -258,3 +258,30 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// Set
+const orderSet = new Set(['Pizza', 'Pasta', 'Risotto', 'Pasta', 'Pizza']);
+console.log(orderSet);
+// Kiíratás: Set(3) {"Pizza", "Pasta", "Risotto"}
+
+console.log(new Set('Pitju'));
+// Kiíratás: Set(5) {"P", "i", "t", "j", "u"}
+
+console.log(orderSet.size);
+
+console.log(orderSet.has('Pizza'));
+
+for (const order of orderSet) {
+  console.log(order);
+}
+// Kiíratás: Pizza
+//           Pasta
+//           Risotto
+
+const munkakorok = ['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter'];
+const kulonbozoMunkakorok = [...new Set(munkakorok)];
+console.log(kulonbozoMunkakorok);
+
+console.log(
+  new Set(['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter']).size
+);
