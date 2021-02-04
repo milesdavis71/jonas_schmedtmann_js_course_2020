@@ -278,10 +278,39 @@ for (const order of orderSet) {
 //           Pasta
 //           Risotto
 
-const munkakorok = ['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter'];
-const kulonbozoMunkakorok = [...new Set(munkakorok)];
-console.log(kulonbozoMunkakorok);
-
 console.log(
   new Set(['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter']).size
 );
+// Kiíratás: 3
+
+console.log(new Set('hevesipitju').size);
+// Kiíratás: 9
+
+// Map
+
+const kocsma = new Map();
+kocsma.set('nev', 'Harom tolgyfa');
+kocsma.set(1, 'Szeged, Magyarország');
+console.log(kocsma.set(2, 'Tatabánya, Magyarország'));
+
+kocsma
+  .set('Kulcsszavak', ['Magyaros', 'Organikus, Vegetariánus'])
+  .set('Nyitva', 10)
+  .set('Zárva', 24)
+  .set(true, 'Nyitva vagyunk')
+  .set(false, 'Zárva vagyunk');
+
+// Kiíratás:
+// Map(3) {"nev" => "Harom tolgyfa", 1 => "Szeged, Magyarország", 2 => "Tatabánya, Magyarország"}
+// [[Entries]]
+// 0: {"nev" => "Harom tolgyfa"}
+// 1: {1 => "Szeged, Magyarország"}
+// 2: {2 => "Tatabánya, Magyarország"}
+// 3: {"Kulcsszavak" => Array(2)}
+// 4: {"Nyitva" => 10}
+// 5: {"Zárva" => 24}
+// 6: {true => "Nyitva vagyunk"}
+// 7: {false => "Zárva vagyunk"}
+
+console.log(kocsma.get('nev'));
+console.log(kocsma.get(true));
