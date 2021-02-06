@@ -233,4 +233,28 @@ const [pizza, , risotto, ...otherFood] = [
   ...restaurant.starterMenu,
 ];
 console.log(pizza, risotto, otherFood);
+
+
+const menu = { ...starterMenu, ...mainMenu };
+for (const item of menu) console.log(item);
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i}: ${el}`);
+}
 */
+const guests = 0;
+const guestCorrect = guests ?? 10;
+console.log(guestCorrect);
+
+console.log('---- AND ----');
+console.log(0 && 'Jonas');
+console.log(7 && 'Jonas');
+
+console.log('Hello' && 23 && null && 'jonas');
+
+// Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
