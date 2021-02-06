@@ -314,3 +314,11 @@ kocsma
 
 console.log(kocsma.get('nev'));
 console.log(kocsma.get(true));
+kocsma.delete();
+// Kiíratás: törölni fogja a 'Tatabánya, Magyarországot'
+console.log(kocsma.size);
+// Kiíratás: 7 (property-k száma)
+
+const arr = [1, 2];
+kocsma.set(arr, 'Test');
+console.log(kocsma.get(arr));
