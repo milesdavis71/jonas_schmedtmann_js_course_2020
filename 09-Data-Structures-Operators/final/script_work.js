@@ -322,3 +322,27 @@ console.log(kocsma.size);
 const arr = [1, 2];
 kocsma.set(arr, 'Test');
 console.log(kocsma.get(arr));
+kocsma.set(document.querySelector('h1'), 'Heading');
+console.log(kocsma);
+
+const kerdes = new Map([
+  ['Kedvenc progamozási nyelved?'],
+  [1, 'C#'],
+  [2, 'Java'],
+  [3, 'Javascript'],
+  [true, 'Jó válasz'],
+  [(false, 'Írjál mást')],
+]);
+console.log(kerdes);
+
+// Convert object to map
+// const hoursMap = new Map(Object.entries(openingHours));
+
+// Quiz app
+console.log(kerdes.get('kerdes'));
+
+for (const [key, value] of kerdes) {
+  if (typeof key === 'szam') console.log(`Kerdes ${key}: ${value}`);
+}
+const valasz = Number(prompt('A válaszod'));
+console.log(valasz);
