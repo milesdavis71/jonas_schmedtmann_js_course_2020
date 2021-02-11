@@ -326,12 +326,13 @@ kocsma.set(document.querySelector('h1'), 'Heading');
 console.log(kocsma);
 
 const kerdes = new Map([
-  ['Kedvenc progamozási nyelved?'],
+  ['kerdes', 'Kedvenc progamozási nyelved?'],
   [1, 'C#'],
   [2, 'Java'],
   [3, 'Javascript'],
+  ['korrekt', 3],
   [true, 'Jó válasz'],
-  [(false, 'Írjál mást')],
+  [false, 'Írj mást'],
 ]);
 console.log(kerdes);
 
@@ -342,7 +343,19 @@ console.log(kerdes);
 console.log(kerdes.get('kerdes'));
 
 for (const [key, value] of kerdes) {
-  if (typeof key === 'szam') console.log(`Kerdes ${key}: ${value}`);
+  console.log(`${key} . ${value}`);
 }
-const valasz = Number(prompt('A válaszod'));
-console.log(valasz);
+// for (const [key, value] of kerdes) {
+//   if (typeof key === 'szam') console.log(`Válasz ${key}: ${value}`);
+// }
+// const valasz = Number(prompt('A válaszod:'));
+
+// console.log(kerdes.get(kerdes.get('korrekt') === valasz));
+
+const menu = {
+  huhu: '12',
+  haha: '13',
+};
+for (const item of menu) {
+  console.log(item);
+}
