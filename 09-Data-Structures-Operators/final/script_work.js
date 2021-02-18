@@ -352,10 +352,33 @@ for (const [key, value] of kerdes) {
 
 // console.log(kerdes.get(kerdes.get('korrekt') === valasz));
 
-const menu = {
-  huhu: '12',
-  haha: '13',
+// const menu = {
+//   huhu: '12',
+//   haha: '13',
+// };
+// for (const item of menu) {
+//   console.log(item);
+// }
+
+const gyumolcsosStand = ['banán', 'málna', 'eper'];
+const gyomolcsEladas = (elso, masodik, harmadik) => {
+  console.log(` ${elso}, ${masodik}, ${harmadik}`);
 };
-for (const item of menu) {
-  console.log(item);
-}
+gyomolcsEladas(...gyumolcsosStand);
+
+const nev = 'Pitju';
+const betuk = [...nev];
+console.log(betuk);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+const add = function (...numbers) {
+  console.log(numbers);
+};
+add(2, 3, 4), add(2, 5, 7, 8), add(2, 4, 5, 6, 7, 8, 9, 10);
+const x = [12, 24, 48];
+add(...x);

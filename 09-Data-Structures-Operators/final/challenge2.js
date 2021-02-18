@@ -63,35 +63,6 @@ const game = {
   },
 };
 
-// const kiir = game.scored;
-// for (let i = 0; i < kiir.length; i++) {
-//   console.log(`Goal ${[i + 1]}: ${kiir[i]}`);
-// }
-
-odds = game.odds;
-fogadas = game.odds;
-
-let fogadasok = Object.entries(fogadas);
-for (const [team, odd] of Object.entries(fogadas)) {
-  const szoveg = team === 'x' ? 'draw' : `Victory: ${game[team]}`;
-  console.log(`Odd of ${szoveg}: ${odd}`);
+for (const [key, player] of game.scored.entries()) {
+  console.log(`${key + 1} ${player}, `);
 }
-
-// for (let i = 0; i < entries.length; i++) {
-//   let entry = entries[i][1];
-//   entry = entry + entries[i][1];
-//   avg = entry / entries.length;
-//   const oddsText = 'győzelmének szorzója:';
-//   console.log(
-//     `A ${game.team1} ${oddsText} ${game.odds.team1}.
-// A döntetlen szorzója: ${game.odds.x}.
-// A ${game.team2} ${oddsText} ${game.odds.team2}. `
-//   );
-// }
-// console.log(Number(avg).toFixed(2));
-// const scorers = [];
-// for (const player of game.scored) {
-//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-// }
-
-// console.log(scorers);
