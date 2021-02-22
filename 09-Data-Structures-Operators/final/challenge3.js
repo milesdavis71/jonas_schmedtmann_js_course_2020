@@ -27,15 +27,15 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
-events = new Set(gameEvents.values());
-console.log([...events]);
-gameEvents.delete(64);
-console.log(gameEvents);
-const time = [...gameEvents.keys()].pop();
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
-for (const [key, value] of gameEvents) {
-  const felido = key <= 45 ? `[FIRST HALF]` : `[SECOND HALF]`;
-  console.log(`${felido} ${key}, ${value}`);
+differentEvents = new Set(gameEvents.values());
+console.log(differentEvents);
+
+// An event happened, on average, every 9 minutes
+
+const lastEventTime = [...gameEvents.keys()].pop();
+console.log((lastEventTime / gameEvents.size).toFixed(2));
+
+for (const [time, esemeny] of gameEvents.entries()) {
+  const felido = time <= 45 ? 'Első' : 'Második';
+  console.log(`${felido}, ${time}, ${esemeny}`);
 }

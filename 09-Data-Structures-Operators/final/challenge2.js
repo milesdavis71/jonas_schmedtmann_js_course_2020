@@ -66,3 +66,22 @@ const game = {
 for (const [key, player] of game.scored.entries()) {
   console.log(`${key + 1} ${player}, `);
 }
+
+let avg = 0;
+const odds = Object.values(game.odds);
+for (const odd of odds) avg += odd;
+avg /= odds.length;
+0;
+console.log(avg.toFixed(2));
+
+for (const [key, odd] of Object.entries(game.odds)) {
+  const szoveg = key === 'x' ? `Odd of draw: ` : `Odd of ${game[key]}:`;
+  console.log(`${szoveg} ${odd}`);
+}
+
+scorers = {};
+
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
