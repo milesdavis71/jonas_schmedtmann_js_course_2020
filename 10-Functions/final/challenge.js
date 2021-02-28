@@ -30,19 +30,23 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 GOOD LUCK 😀
 */
-const poll = {};
-
-
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section 😃
   answers: new Array(4).fill(0),
   registerNewAnswer() {
-    // Get answer
     const answer = Number(
-      prompt(
-        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
-      )
+      prompt(`${this.question}\n ${this.options.join('\n')}`)
     );
-    console.log(answer);
+    this.answers[answer]++;
+    this.displayResults();
+  },
+  displayResults() {
+    console.log();
+  },
+};
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.displayResults());
