@@ -79,3 +79,84 @@ beszallas(90, 3);
 
 // És működik nyíl függvényként is
 (() => console.log('Ez is csak egyszer fut le.'))();
+
+const foglalasok = [];
+const foglal = function (jaratSzam, utasSzam = 1, ar = utasSzam * 9999) {
+  const foglalas = {
+    jaratSzam,
+    utasSzam,
+    ar,
+  };
+  console.log(foglalas);
+  foglalasok.push(foglalas);
+};
+
+foglal('huhu');
+foglal('hehe', undefined, 1000);
+
+('use strict');
+const egySzoCsupaKisbetu = function (szoveg) {
+  console.log(szoveg.replace(/ /g, '').toLowerCase());
+};
+
+egySzoCsupaKisbetu('srsfg sdfg sdfg sdfg sdfg sdfg Agfsfg Adfg sfg');
+
+const elsoSzoCsupaNagybetu = function (szoveg) {
+  const [elso, ...tobbi] = szoveg.split(' ');
+  return [elso.toUpperCase(), ...tobbi].join(' ');
+};
+const kiir = function (szoveg, fuggveny) {
+  console.log(fuggveny(szoveg));
+};
+
+kiir('sfdgsdfg sdfg sdfg sdfg', elsoSzoCsupaNagybetu);
+
+const udvozles = function (udvozol) {
+  return function (nev) {
+    console.log(`${udvozol} ${nev}`);
+  };
+};
+const hellovalUdvozol = function (szoveg, fuggveny) {
+  return fuggveny(szoveg);
+};
+udvozles('Hello')('Pityu');
+
+const secureBooking = function () {
+  let passangerCount = 0;
+  return function () {
+    console.log(`${passangerCount} utas`);
+  };
+};
+const booker = secureBooking();
+secureBooking();
+secureBooking();
+secureBooking();
+
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+g();
+f();
+h();
+f();
+
+const beszallas = function (utaszam, varakozas) {
+  const csoportraBontas = utaszam / 3;
+  setTimeout(() => {
+    console.log(`Utasok száma: ${utaszam}`);
+    console.log(`Csoportok száma ${csoportraBontas}`);
+  }, varakozas * 1000);
+  console.log(`A beszállás ${varakozas} másodperc után megkezdődik`);
+};
+beszallas(180, 4);
