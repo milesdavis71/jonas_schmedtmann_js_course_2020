@@ -66,3 +66,9 @@ const game = {
 for (const [key, player] of game.scored.entries()) {
   console.log(`${key + 1} ${player}, `);
 }
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average= average+odd;
+
+  console.log(odds.length / odd);
+}
