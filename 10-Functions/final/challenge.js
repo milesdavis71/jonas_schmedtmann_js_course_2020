@@ -39,14 +39,15 @@ const poll = {
     const answer = Number(
       prompt(`${this.question}\n ${this.options.join('\n')}`)
     );
+    console.log(this.answers);
     this.answers[answer]++;
     this.displayResults();
   },
   displayResults() {
-    console.log();
+    console.log(this.answers);
   },
 };
 
 document
   .querySelector('.poll')
-  .addEventListener('click', poll.registerNewAnswer.displayResults());
+  .addEventListener('click', poll.registerNewAnswer);

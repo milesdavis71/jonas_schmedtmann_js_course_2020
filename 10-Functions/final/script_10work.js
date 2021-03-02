@@ -70,7 +70,7 @@ beszallas(90, 3);
     header.style.color = 'blue';
   });
 })();
-*/
+
 
 // IIFE kétféle szintaxisa:
 (function () {
@@ -160,3 +160,70 @@ const beszallas = function (utaszam, varakozas) {
   console.log(`A beszállás ${varakozas} másodperc után megkezdődik`);
 };
 beszallas(180, 4);
+*/
+//  call apply
+
+const lufthansa = {
+  jarat: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book function
+  book(jaratSzam, nev) {
+    console.log(`${nev} helyet foglalt a ${jaratSzam} járaton.`);
+    this.bookings.push({ flight: `${this.iataCode} ${jaratSzam}`, nev });
+  },
+};
+lufthansa.book(245, 'Huhu Hehe');
+lufthansa.book(635, 'Hihi Haha');
+
+const eurowings = {
+  jarat: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+book.call(eurowings, 268, 'Kiki Kuku');
+book.call(lufthansa, 362, 'Bubu Dudu');
+
+// Bind metódus
+
+const bookEW = book.bind(eurowings);
+bookEW(12356, 'Trik Trik');
+
+const bookLH = book.bind(lufthansa);
+bookEW(56789, 'Kuku Kuku');
+
+const bookLH56789 = book.bind(lufthansa, 56789);
+bookLH56789('Dudu Dudu');
+
+// Event listener és bind metódus
+lufthansa.repulok = 300;
+lufthansa.repuloVasarlas = function () {
+  this.repulok++;
+  console.log(this.repulok);
+};
+
+lufthansa.repuloVasarlas();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.repuloVasarlas.bind(lufthansa));
+
+// Partial Application/Részleges használat
+
+const afaHozzaadasa = (afa, nettoErtek) => nettoErtek + nettoErtek * afa;
+console.log(afaHozzaadasa(0.27, 200));
+const magyarAfaHozzaasa = afaHozzaadasa.bind(null, 0.27);
+console.log(magyarAfaHozzaasa(5000));
+
+// Partial Application függvényt visszaadó függvény használatával
+
+const afahozzaadasa2 = function (afa) {
+  return function (value) {
+    return value + value * afa;
+  };
+};
+const magyarAfaHozzaasa2 = afahozzaadasa2(0.27);
+console.log(magyarAfaHozzaasa2(150));
