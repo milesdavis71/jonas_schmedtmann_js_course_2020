@@ -220,10 +220,33 @@ console.log(magyarAfaHozzaasa(5000));
 
 // Partial Application függvényt visszaadó függvény használatával
 
-const afahozzaadasa2 = function (afa) {
-  return function (value) {
-    return value + value * afa;
+const afaHozzaadasa2 = function (afa) {
+  return function (ertek) {
+    return ertek + ertek * afa;
   };
 };
-const magyarAfaHozzaasa2 = afahozzaadasa2(0.27);
-console.log(magyarAfaHozzaasa2(150));
+
+const afaHuHozzaadasa = afaHozzaadasa2(0.27);
+console.log(afaHuHozzaadasa(1000));
+
+const secureBooking = function () {
+  let passangerCount = 0;
+  return function () {
+    passangerCount++;
+    console.log(`Az utasok szám: ${passangerCount}`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+const beszallas = function (utaszam, varakozas) {
+  const csoportraBontas = utaszam / 3;
+  console.log(${});
+  setTimeout(function () {
+    console.log(`A csoportok száma: ${csoportraBontas}`);
+    console.log();
+  }, wait * 1000);
+};

@@ -39,15 +39,20 @@ const poll = {
     const answer = Number(
       prompt(`${this.question}\n ${this.options.join('\n')}`)
     );
-    console.log(this.answers);
-    this.answers[answer]++;
+    if ((answer < 4) & (typeof answer === 'number')) this.answers[answer]++;
+    this.displayResults('string');
     this.displayResults();
   },
-  displayResults() {
-    console.log(this.answers);
+
+  displayResults(type = 'array') {
+    if (type === 'array') console.log(this.answers);
+    if (type === 'string') console.log(`Poll results are ${this.answers}`);
   },
 };
+poll.registerNewAnswer();
 
 document
   .querySelector('.poll')
-  .addEventListener('click', poll.registerNewAnswer);
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
