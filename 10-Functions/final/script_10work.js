@@ -242,11 +242,13 @@ booker();
 booker();
 booker();
 
-const beszallas = function (utaszam, varakozas) {
-  const csoportraBontas = utaszam / 3;
-  console.log(${});
+const beszallas = function (utasszam, varakozas) {
+  const csoportrabontas = utasszam / 3;
+  console.log(`Utasok száma: ${utasszam}`);
   setTimeout(function () {
-    console.log(`A csoportok száma: ${csoportraBontas}`);
-    console.log();
-  }, wait * 1000);
+    console.log('haha');
+    console.log('huhu');
+  }, varakozas * 1000);
 };
+
+beszallas(45, 3);
