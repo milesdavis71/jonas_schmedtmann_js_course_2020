@@ -202,5 +202,18 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
-const y = Array.from({ length: 7 }, () => 1);
+const y = Array.from({ length: 7 });
 console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i);
+console.log(z);
+
+const z = Array.from({ length: 100 }, (_, i) => i);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUS = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+});
