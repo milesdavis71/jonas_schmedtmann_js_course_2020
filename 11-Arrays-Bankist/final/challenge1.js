@@ -24,19 +24,12 @@ const dogsKate1 = [4, 1, 15, 8, 3];
 const dogsJulia2 = [9, 16, 6, 8, 3];
 const dogsKate2 = [10, 5, 6, 1, 4];
 
-const displayArrayOnConsole = function (arr) {
-  arr.forEach((year, i) => {
-    console.log(
-      `Dog number ${i + 1} ${
-        year > 3 ? 'is adult,' : 'still a puppy 🐶'
-      } and is ${year} old.`
-    );
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dosgJuliaCorrectKiir = dogsJulia.slice(1, 3);
+  const allDogArrays = dogsKate.concat(dosgJuliaCorrectKiir);
+  allDogArrays.forEach((dog, i) => {
+    if (dog > 3) console.log(`A kutya száma ${i + 1}, ${dog} éves, felnőtt`);
+    else console.log(`A kutya száma ${i + 1}, ${dog} éves, még kölyök`);
   });
-};
-
-const checkDogs = function (fugg1, fugg2) {
-  const fugg1Correct = fugg1.splice(1, 2);
-  const mindenTomb = fugg1Correct.concat(fugg2);
-  displayArrayOnConsole(mindenTomb);
 };
 checkDogs(dogsJulia1, dogsKate1);

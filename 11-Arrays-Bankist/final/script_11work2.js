@@ -65,9 +65,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 // Functions
-const displayMOvements = function (movements) {
+const displayMOvements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach((mov, i) => {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
@@ -81,9 +82,10 @@ const displayMOvements = function (movements) {
   });
 };
 
-const calcAndDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} Fr`;
+// Módosított calcAndDisplayBalance függvény
+const calcAndDisplayBalance = function (acc) {
+  currentAccount.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${currentAccount.balance} Fr`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -115,34 +117,90 @@ const creatUserNames = function (accs) {
 };
 creatUserNames(accounts);
 
+// Az argumentumba bármelyik account beletehető
+const updateUI = function (acc) {
+  // Pénzmozgás mutatása
+  displayMOvements(acc.movements);
+  // Egyenleg mutatása
+  calcAndDisplayBalance(acc);
+  // Összegzés mutatása
+  calcDisplaySummary(acc);
+};
+
 // itt csak a létrehozás történik meg (define), ezért „let”.
 // Adat majd csak később lesz hozzárendelve.
 let currentAccount;
-
-// Event handler
+// Eseménykezelő
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
-
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
-
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    // Display UI and message
-    labelWelcome.textContent = `Üdv újra itt, ${currentAccount.owner}`;
+    // Felhasználói felület mutatása és üdvözlő üzenet
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
     containerApp.style.opacity = 100;
-
-    // Clear input fields
+    // A felhasználónév, jelszó mezők törlése
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
-    //  Display movements
-    displayMOvements(currentAccount.movements);
 
-    // Display balance
-    calcAndDisplayBalance(currentAccount.movements);
-
-    // Display summary (ez majd később lesz megírva)
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount);
   }
 });
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  // Az átutalás összegének beolvasása a beviteli mezőből
+  const amount = Number(inputTransferAmount.value);
+  // A küldemény címzettje (find metódussal ellenőrzi, hogy van-e ilyen nevű a felhasználók között)
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  inputTransferTo.value = inputTransferAmount.value = '';
+  inputTransferAmount.blur();
+  // Előzetes ellenőrzés az átutalás előtt
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    // Ez a transfer lényege
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+  }
+  updateUI(currentAccount);
+});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+    inputCloseUsername.value = inputCloseUsername.value = '';
+    inputLoginPin.blur();
+  }
+});
+
+// Sorba rendezés
+// account1.movements.sort((a, b) => a - b);
+// console.log(account1.movements);
+
+let sorted = true;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMOvements(currentAccount.movements, sorted);
+  sorted = !sorted;
+});
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);

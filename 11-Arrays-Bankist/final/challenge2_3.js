@@ -34,8 +34,14 @@ const ages = [5, 2, 4, 1, 15, 8, 3];
 // calcAverageHumanAge(ages);
 
 // tömb metódus láncolatos megoldás
-const calcAverageHumanAge = ages
-  .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
-  .filter(age => age > 18)
-  .reduce((acc, age, i, arr) => acc + age / arr.length);
-console.log(calcAverageHumanAge);
+
+const calcAverageHumanAge = function (ages) {
+  const humanage = ages
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age > 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length);
+  console.log(humanage.toFixed(2));
+};
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
