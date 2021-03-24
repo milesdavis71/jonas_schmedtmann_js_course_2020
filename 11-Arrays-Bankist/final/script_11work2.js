@@ -202,7 +202,7 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
-const y = Array.from({ length: 7 }, () => 1);
+const y = Array.from({ length: 7 });
 console.log(y);
 
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
