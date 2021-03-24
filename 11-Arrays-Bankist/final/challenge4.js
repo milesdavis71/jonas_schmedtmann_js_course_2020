@@ -35,37 +35,22 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
-function hozzaadEletkor(dog) {
-  dog.Recommended = dog.weight * 0.75 * 28;
-}
-dogs.forEach(hozzaadEletkor);
+const recomm = function (dog) {
+  dog.recommendedFood = (dog.weight ** 0.75 * 28).toFixed(2);
+};
+dogs.forEach(recomm);
 console.log(dogs);
 
-// function sarahKutyai(dog) {
-//   ownersString = [...dog.owners];
-//   console.log(ownersString);
-// }
+const findSarah = dogs.find(dog => dog.owners.includes('Matilda'));
+console.log(findSarah);
 
-const sarah = dogs.find(acc => acc.owners.includes('Sarah'));
-console.log(sarah);
-const ownersEatTooMuch = dogs
-  .filter(dog => dog.curFood > dog.Recommended)
-  .flatMap(dog => dog.owners);
-console.log(ownersEatTooMuch);
-
-const ownersEatTooLittle = dogs
-  .filter(dog => dog.curFood < dog.Recommended)
-  .flatMap(dog => dog.owners);
-console.log(ownersEatTooLittle);
-
-console.log(`${ownersEatTooMuch.join(' and ')} huhuu`);
-
-console.log(dogs.some(dog => dog.curFood === dog.Recommended));
-
-const okay = dog => dog.curFood * 1.1 >= dog.Recommended <= dog.curFood * 0.9;
-
-console.log(dogs.some(okay));
-
-console.log(dogs.filter(okay));
-
-console.log(dogs.map(dog => dog.Recommended).sort((a, b) => a - b));
+const ownersEatTooMuch = function (dog) {
+  dogs.map(dog => dog.curFood > dog.recommendedFood);
+};
+console.log(dogs.fore);
+// 3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+// 4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+// 5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+// 6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
+// 7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+// 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
