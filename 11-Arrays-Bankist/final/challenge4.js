@@ -35,32 +35,59 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
-const recomm = function (dog) {
-  dog.recommendedFood = (dog.weight ** 0.75 * 28).toFixed(2);
-};
-dogs.forEach(recomm);
+console.log('1.');
+dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
 console.log(dogs);
 
-const findSarah = dogs.find(dog => dog.owners.includes('Matilda'));
-console.log(findSarah);
+console.log('');
+console.log('2.');
+const dogOfSarah = dogs.find(acc => acc.owners.includes('Sarah'));
+console.log(
+  `Sarah kutyája ${
+    dogOfSarah.curFood > dogOfSarah.recFood ? 'sokat' : 'keveset'
+  } eszik`
+);
 
+console.log('');
+console.log('3.');
 const ownersEatTooMuch = dogs
-  .filter(dog => dog.curFood > dog.recommendedFood)
+  .filter(dog => dog.curFood > dog.recFood)
   .flatMap(dog => dog.owners);
 console.log(ownersEatTooMuch);
 
-console.log(`${ownersEatTooMuch.join(' and ')} huhu huhu`);
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooLittle);
 
-const ExactlyRecFood = dogs.some(dog => dog.curFood === dog.recommendedFood);
-console.log(ExactlyRecFood);
+console.log('');
+console.log('4.');
+console.log(
+  `${ownersEatTooMuch.join(
+    ' and '
+  )}'s dogs eat too much!" and ${ownersEatTooLittle.join(
+    ' and '
+  )}'s dogs eat too little!`
+);
 
-const okayFood = dog =>
-  dog.curFood * 0.9 > dog.recommendedFood < dog.curFood * 1.1;
+console.log('');
+console.log('5.');
+console.log(dogs.some(dog => dog.curFood === dog.recFood));
+
+const okayFood = dog => dog.recFood < dog.curFood < dog.recFood;
+console.log('');
+console.log('6.');
 console.log(dogs.some(okayFood));
 
-const okayDogs = dogs.filter(okayFood);
-console.log(okayDogs);
+console.log('');
+console.log('7.');
 
-const order = dogs.recommendedFood;
-console.log(dogs.recommendedFood);
+const okayArr = dogs.filter(okayFood);
+console.log(okayArr);
+
+console.log('');
+console.log('8.');
+const order = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+console.log(order);
+
 // 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
