@@ -19,29 +19,8 @@ GOOD LUCK 😀
 
 const ages = [5, 2, 4, 1, 15, 8, 3];
 
-// const calcAverageHumanAge = function (ages) {
-//   const DogsAgeConvertToHuman = ages.map(age =>
-//     age <= 2 ? age * 2 : 16 + age * 4
-//   );
-//   console.log(DogsAgeConvertToHuman);
-//   const FilterOldDogs = DogsAgeConvertToHuman.filter(age => age > 18);
-//   console.log(FilterOldDogs);
-//   const averageHumanAge =
-//     FilterOldDogs.reduce((acc, age) => acc + age) / FilterOldDogs.length;
-//   console.log(averageHumanAge);
-// };
+function avg(nums) {
+  return nums.reduce((a, b) => a + b) / nums.length;
+}
 
-// calcAverageHumanAge(ages);
-
-// tömb metódus láncolatos megoldás
-
-const calcAverageHumanAge = function (ages) {
-  const humanage = ages
-    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
-    .filter(age => age > 18)
-    .reduce((acc, age, i, arr) => acc + age / arr.length);
-  console.log(humanage.toFixed(2));
-};
-
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(avg(ages).toFixed(2));
