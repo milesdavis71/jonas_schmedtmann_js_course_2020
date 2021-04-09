@@ -17,10 +17,16 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
-const ages = [5, 2, 4, 1, 15, 8, 3];
+const ages = [6, 9, 12];
 
-function avg(nums) {
-  return nums.reduce((a, b) => a + b) / nums.length;
-}
+// const avg = ages.reduce((acc, age) => acc + age) / ages.length;
 
-console.log(avg(ages).toFixed(2));
+const avg = ages.reduce(function (acc, age, i, arr) {
+  console.log(`Iteráció: ${i}: kor: ${age} : hógolyó: ${acc}`);
+  return acc + age;
+}, 0);
+
+const avg2 = ages.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+console.log(avg);
+console.log(avg2);

@@ -35,21 +35,24 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
-console.log('1.');
-dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log('1');
+
+dogs.forEach(dog => {
+  dog.recFood = Math.trunc(dog.weight ** 0.75 * 28);
+});
 console.log(dogs);
 
 console.log('');
-console.log('2.');
-const dogOfSarah = dogs.find(acc => acc.owners.includes('Sarah'));
+console.log('2');
+const sarah = dogs.find(dog => dog.owners.includes('Sarah'));
 console.log(
-  `Sarah kutyája ${
-    dogOfSarah.curFood > dogOfSarah.recFood ? 'sokat' : 'keveset'
-  } eszik`
+  `Sarah kutyája túl ${
+    sarah.curFood > sarah.recFood ? 'sokat' : 'keveset'
+  } eszik.`
 );
 
 console.log('');
-console.log('3.');
+console.log('3');
 const ownersEatTooMuch = dogs
   .filter(dog => dog.curFood > dog.recFood)
   .flatMap(dog => dog.owners);
@@ -61,33 +64,26 @@ const ownersEatTooLittle = dogs
 console.log(ownersEatTooLittle);
 
 console.log('');
-console.log('4.');
-console.log(
-  `${ownersEatTooMuch.join(
-    ' and '
-  )}'s dogs eat too much!" and ${ownersEatTooLittle.join(
-    ' and '
-  )}'s dogs eat too little!`
-);
+console.log('4');
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much.`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little.`);
 
 console.log('');
-console.log('5.');
-console.log(dogs.some(dog => dog.curFood === dog.recFood));
-
-const okayFood = dog => dog.recFood < dog.curFood < dog.recFood;
-console.log('');
-console.log('6.');
-console.log(dogs.some(okayFood));
+console.log('5');
+console.log(dogs.some(dog => dog.curFood === dogs.recFood));
 
 console.log('');
-console.log('7.');
-
-const okayArr = dogs.filter(okayFood);
-console.log(okayArr);
+console.log('6');
+const okay = dog =>
+  dog.recFood * 0.9 < dog.curFood && dog.recFood * 1.1 > dog.curFood;
+console.log(dogs.some(okay));
 
 console.log('');
-console.log('8.');
+console.log('7');
+const okayDogs = dogs.filter(okay);
+console.log(okayDogs);
+
+console.log('');
+console.log('8');
 const order = dogs.slice().sort((a, b) => a.recFood - b.recFood);
 console.log(order);
-
-// 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
