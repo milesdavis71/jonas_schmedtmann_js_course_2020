@@ -1,5 +1,6 @@
 'strict';
 const Person = function (firstName, birthYear) {
+  // Instance properties
   this.firstName = firstName;
   this.birthYear = birthYear;
 };
@@ -12,4 +13,4 @@ console.log(jonas);
 // 3. Az üres objektum {} hozzákapcsolódik a prototípusához
 // 4. A konstruktor visszaadja az először létrehozott üres objektumot, aminek most már nem kell üresnek lennie.
 
-
+console.log(jonas instanceof Person);
