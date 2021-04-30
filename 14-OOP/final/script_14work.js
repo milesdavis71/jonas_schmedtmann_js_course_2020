@@ -14,3 +14,24 @@ console.log(jonas);
 // 4. A konstruktor visszaadja az először létrehozott üres objektumot, aminek most már nem kell üresnek lennie.
 
 console.log(jonas instanceof Person);
+
+console.log(Person.prototype);
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+jonas.calcAge();
+console.log(jonas.__proto__);
+console.log(jonas.__proto__ === Person.prototype);
+console.log(Person.prototype.isPrototypeOf(jonas));
+console.log(Person.prototype.isPrototypeOf(Person));
+
+Person.prototype.species = 'ember';
+console.log(jonas.species);
+console.log(jonas.hasOwnProperty('firstName'));
+console.log(jonas.hasOwnProperty('ember'));
+
+// Object.prototype (top of the prototype chain)
+console.log(jonas.__proto__.__proto__);
+console.dir(Person.prototype.constructor);
