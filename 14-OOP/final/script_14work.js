@@ -35,3 +35,72 @@ console.log(jonas.hasOwnProperty('ember'));
 // Object.prototype (top of the prototype chain)
 console.log(jonas.__proto__.__proto__);
 console.dir(Person.prototype.constructor);
+
+// osztály deklaráció/class declaration
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name.`);
+  }
+  get age() {
+    return 2037 - this.birthYear;
+  }
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const jessica = new PersonCl('Jessica Davis', 1986);
+console.log(jessica.__proto__ === PersonCl.prototype);
+// true
+console.log('huhu');
+console.log(jessica);
+jessica.calcAge();
+jessica.greet();
+
+const account = {
+  owner: jonas,
+  movements: [200, 500, 100, 300],
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+console.log(account.latest);
+
+account.latest = 50;
+console.log(account.movements);
+
+const PersonProto = {
+  calcAge() {
+    console.log(`${this.firstName} ${2037 - this.birthYear} éves.`);
+  },
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1970);
+sarah.calcAge();
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
