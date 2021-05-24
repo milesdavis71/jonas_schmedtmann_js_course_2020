@@ -13,34 +13,48 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 let map, mapEvent;
 
-if (navigator.geolocation)
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const { latitude } = position.coords;
-      const { longitude } = position.coords;
-      console.log(`https://www.google.hu/maps/@${latitude},${longitude}`);
-
-      const coords = [latitude, longitude];
-
-      map = L.map('map').setView(coords, 13);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
-
-      // Handling klick on map
-      map.on('click', function (mapE) {
-        mapEvent = mapE;
-        form.classList.remove('hidden');
-        inputDistance.focus();
+class App {
+  constructor() {
+    this._getPosition();
+  }
+  _getPosition() {
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(this._loadMap, function () {
+        alert('Nincs ilyen pozíció');
       });
-    },
+  }
 
-    function () {
-      alert('Nincs ilyen pozíció');
-    }
-  );
+  _loadMap(position) {
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
+    console.log(`https://www.google.hu/maps/@${latitude},${longitude}`);
+
+    const coords = [latitude, longitude];
+
+    map = L.map('map').setView(coords, 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    x0;
+    // Handling klick on map
+    map.on('click', function (mapE) {
+      mapEvent = mapE;
+      form.classList.remove('hidden');
+      inputDistance.focus();
+    });
+  }
+
+  _showForm() {}
+
+  _toggleElevationField() {}
+
+  _newWorkout() {}
+}
+
+const app = new App();
+
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -71,7 +85,6 @@ form.addEventListener('submit', function (e) {
 
 // Inputelevation és inputCadence közötti váltogatás
 inputType.addEventListener('change', function () {
-  console.log(inputElevation.closest('.form__row'));
   inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
   inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
 });
