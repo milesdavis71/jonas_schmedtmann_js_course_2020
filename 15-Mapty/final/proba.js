@@ -13,3 +13,4 @@
 const kiir = huhu=>console.log(huhu)
 
 kiir('haha');
+console.log(`${kifejezés} string szöveg`);
