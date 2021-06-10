@@ -35,6 +35,7 @@ getCountryData('hungary');
 getCountryData('germany');
 */
 
+/*
 const renderCountry = function (data, className = '') {
   const html = `
   <article class="${className}">
@@ -46,7 +47,7 @@ const renderCountry = function (data, className = '') {
       +data.population / 1000000
     ).toFixed(1)}</p>
     <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-    <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+    <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>  
   </div>
 </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
@@ -80,3 +81,9 @@ const getCountryAndNeighbour = function (country) {
   });
 };
 getCountryAndNeighbour('portugal');
+*/
+
+const request = fetch('https://restcountries.eu/rest/v2/name/portugal');
+console.log(request);
+
+const getCountryData = function (country) {};
