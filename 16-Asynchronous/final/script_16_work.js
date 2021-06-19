@@ -98,20 +98,32 @@ getCountryData('germany');
 // };
 // getCountryData('hungary');
 
+const getJSON = function (url, errorMsg = 'Valami nem jó.') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+    return response.json();
+  });
+};
+
 const getCountryData = function (country) {
   // Country 1
-  fetch(`https://restcountries.eu/rest/v2/name/${country}`)
-    .then(response => response.json())
+  getJSON(
+    `https://restcountries.eu/rest/v2/name/${country}`,
+    'Country not found'
+  )
     .then(data => {
       renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
+      const neighbour = 'sfgdsfg';
+      // const neighbour = 'data[0].borders[0]';
 
-      if (!neighbour) return;
+      if (!neighbour) throw new Error('Ennek az országnak nincs szomszédja.');
 
       // Country 2
-      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+      return getJSON(
+        `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
+        'A megadott ország nem található.'
+      );
     })
-    .then(response => response.json())
     .then(data => renderCountry(data, 'neighbour'))
     .catch(err => {
       console.error(err);
@@ -124,4 +136,5 @@ const getCountryData = function (country) {
 btn.addEventListener('click', function () {
   getCountryData('portugal');
 });
+
 // const getCountryData = function (country) {};
