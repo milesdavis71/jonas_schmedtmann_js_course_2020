@@ -26,6 +26,13 @@ const renderError = function (msg) {
   // countriesContainer.style.opacity = 1;
 };
 
+const getJSON = function (url, errorMsg = 'Hiba.') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+    return response.json();
+  });
+};
+
 ////////////////////////////////
 /*
 const getCountryData = function (country) {
@@ -98,18 +105,11 @@ getCountryData('germany');
 // };
 // getCountryData('hungary');
 
-const getJSON = function (url, errorMsg = 'Valami nem jó.') {
-  return fetch(url).then(response => {
-    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
-    return response.json();
-  });
-};
-
 const getCountryData = function (country) {
   // Country 1
   getJSON(
     `https://restcountries.eu/rest/v2/name/${country}`,
-    'Country not found'
+    'A megadott ország nem található.'
   )
     .then(data => {
       renderCountry(data[0]);
