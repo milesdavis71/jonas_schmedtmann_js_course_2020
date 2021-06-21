@@ -26,6 +26,13 @@
 //   // countriesContainer.style.opacity = 1;
 // };
 
+const getJSON = function (url, errorMsg = 'Hiba.') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+    return response.json();
+  });
+};
+
 ////////////////////////////////
 /*
 const getCountryData = function (country) {
@@ -98,6 +105,7 @@ getCountryData('germany');
 // };
 // getCountryData('hungary');
 
+<<<<<<< HEAD
 // const getJSON = function (url, errorMsg = 'Valami nem jó.') {
 //   return fetch(url).then(response => {
 //     if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
@@ -136,6 +144,39 @@ getCountryData('germany');
 // btn.addEventListener('click', function () {
 //   getCountryData('portugal');
 // });
+=======
+const getCountryData = function (country) {
+  // Country 1
+  getJSON(
+    `https://restcountries.eu/rest/v2/name/${country}`,
+    'A megadott ország nem található.'
+  )
+    .then(data => {
+      renderCountry(data[0]);
+      const neighbour = 'sfgdsfg';
+      // const neighbour = 'data[0].borders[0]';
+
+      if (!neighbour) throw new Error('Ennek az országnak nincs szomszédja.');
+
+      // Country 2
+      return getJSON(
+        `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
+        'A megadott ország nem található.'
+      );
+    })
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      console.error(err);
+      renderError(`Valami nem jó. ${err.message} Próbáld meg újra.`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+btn.addEventListener('click', function () {
+  getCountryData('portugal');
+});
+>>>>>>> c10355dfbe832c3e740d5229eacc4dbbdb3d00ab
 
 // const getCountryData = function (country) {};
 console.log('Test start');

@@ -18,27 +18,38 @@ const renderCountry = function (data, className = '') {
   </div>
 </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
+};
+
+const getJSON = function (url, errorMsg = 'Nincs ilyen ország.') {
+  return fetch(url).then(response => {
+    if (!response.ok)
+      throw new Error(`${errorMsg} Hibakód: ${response.status}`);
+    return response.json();
+  });
 };
 
 // https://restcountries.eu/rest/v2/name/${country}
 
 const getCountryData = function (country) {
-  fetch(`https://restcountries.eu/rest/v2/name/${country}`)
-    .then(response => response.json())
-    .then(data => {
-      renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
-      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
-    })
-    .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbour'));
+  getJSON(
+    `https://restcountries.eu/rest/v2/name/${country}`,
+    'Nincs ilyen ország'
+  ).then(data => {
+    renderCountry(data[0]);
+    const neighbour = data[0].borders[0];
+    if (!neighbour) throw new Error('Nincs szomszéd ország');
+    // const neighbour = 'sdfsdf';
+    return getJSON(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
+      .then(data => renderCountry(data, 'neighbour'))
+      .catch(err => renderError(`Hiba. ${err.message}`))
+      .finally(() => (countriesContainer.style.opacity = 1));
+  });
 };
 btn.addEventListener('click', function () {
-  getCountryData('hungary');
+  getCountryData('australia');
 });
