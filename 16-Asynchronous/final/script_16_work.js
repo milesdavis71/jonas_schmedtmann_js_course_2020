@@ -1,25 +1,25 @@
 'use strict';
 
 // const btn = document.querySelector('.btn-country');
-// const countriesContainer = document.querySelector('.countries');
+const countriesContainer = document.querySelector('.countries');
 
-// const renderCountry = function (data, className = '') {
-//   const html = `
-//   <article class="${className}">
-//   <img class="country__img" src="${data.flag}" />
-//   <div class="country__data">
-//     <h3 class="country__name">${data.name}</h3>
-//     <h4 class="country__region">${data.region}</h4>
-//     <p class="country__row"><span>👫</span>${(
-//       +data.population / 1000000
-//     ).toFixed(1)}</p>
-//     <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-//     <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-//   </div>
-// </article>`;
-//   countriesContainer.insertAdjacentHTML('beforeend', html);
-//   // countriesContainer.style.opacity = 1;
-// };
+const renderCountry = function (data, className = '') {
+  const html = `
+  <article class="${className}">
+  <img class="country__img" src="${data.flag}" />
+  <div class="country__data">
+    <h3 class="country__name">${data.name}</h3>
+    <h4 class="country__region">${data.region}</h4>
+    <p class="country__row"><span>👫</span>${(
+      +data.population / 1000000
+    ).toFixed(1)}</p>
+    <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+    <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+  </div>
+</article>`;
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
+};
 
 // const renderError = function (msg) {
 //   countriesContainer.insertAdjacentText('beforeend', msg);
@@ -145,13 +145,43 @@ getCountryData('germany');
 // });
 
 // const getCountryData = function (country) {};
-console.log('Test start');
-setTimeout(() => console.log('0 sec timer'), 0);
-Promise.resolve('Resolved promise 1').then(res => console.log(res));
-console.log('Test end');
+// console.log('Test start');
+// setTimeout(() => console.log('0 sec timer'), 0);
+// Promise.resolve('Resolved promise 1').then(res => console.log(res));
+// console.log('Test end');
 
-Promise.resolve('Resolved promise 2').then(res => {
-  for (let i = 0; i < 1000000000; i++);
-  console.log(rest);
-});
-console.log('Test end');
+// Promise.resolve('Resolved promise 2').then(res => {
+//   for (let i = 0; i < 1000000000; i++);
+//   console.log(rest);
+// });
+// console.log('Test end');
+
+// Async/await
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+
+const whereAmI = async function () {
+  const resGeo = await fetch(
+    'https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=country_name'
+  );
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  const res = await fetch(
+    `https://restcountries.eu/rest/v2/name/${dataGeo.country_name}`
+  );
+  const data = await res.json();
+  renderCountry(data[0]);
+};
+
+// A getPotision meghatározza a helyet a b
+// const { latitude: lat, longitude: lng } = pos.coords;
+// return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+// https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=city
+// https://restcountries.eu/rest/v2/name/${country}
+
+whereAmI();
+console.log('FIRST');
