@@ -21,10 +21,10 @@ const renderCountry = function (data, className = '') {
   countriesContainer.style.opacity = 1;
 };
 
-// const renderError = function (msg) {
-//   countriesContainer.insertAdjacentText('beforeend', msg);
-//   // countriesContainer.style.opacity = 1;
-// };
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  countriesContainer.style.opacity = 1;
+};
 
 const getJSON = function (url, errorMsg = 'Hiba.') {
   return fetch(url).then(response => {
@@ -163,25 +163,51 @@ getCountryData('germany');
 //   });
 // };
 
-const whereAmI = async function () {
-  const resGeo = await fetch(
-    'https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=country_name'
-  );
-  const dataGeo = await resGeo.json();
-  console.log(dataGeo);
+// const whereAmI = async function () {
+//   try {
+//     const resGeo = await fetch(
+//       'https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=country_name'
+//     );
+//     if (!resGeo.ok) throw new Error('Beolvasási hiba.');
+//     const dataGeo = await resGeo.json();
+//     const res = await fetch(
+//       `https://restcountries.eu/rest/v2/name/${dataGeo.country_name}`
+//     );
+//     if (!res.ok) throw new Error('Nincs ilyen zene.');
+//     const data = await res.json();
+//     renderCountry(data[0]);
+//     return `Itt vagy: ${dataGeo.country_name} ország`;
+//   } catch (err) {
+//     console.error(err);
+//     renderError(err.message);
+//     throw err;
+//   }
+// };
+// console.log('1: Ország meghatározása kezdődik.');
+// (async function () {
+//   try {
+//     const city = await whereAmI();
+//     console.log(`2: ${city}`);
+//   } catch (err) {
+//     console.error(`2: ${err}`);
+//   }
+//   console.log('3: Ország meghatározása kész.');
+// })();
 
-  const res = await fetch(
-    `https://restcountries.eu/rest/v2/name/${dataGeo.country_name}`
-  );
-  const data = await res.json();
-  renderCountry(data[0]);
+// 'https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=country_name'
+// `https://restcountries.eu/rest/v2/name/${dataGeo.country_name_}`
+
+const get3countries = async function (c1, c2, c3) {
+  try {
+    const data = await Promise.all([
+      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+    ]);
+    console.log( .map(d => d[0].capital));
+  } catch (error) {
+    console.error(err);
+  }
 };
 
-// A getPotision meghatározza a helyet a b
-// const { latitude: lat, longitude: lng } = pos.coords;
-// return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-// https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=city
-// https://restcountries.eu/rest/v2/name/${country}
-
-whereAmI();
-console.log('FIRST');
+get3countries('hungary', 'portugal', 'germany');
