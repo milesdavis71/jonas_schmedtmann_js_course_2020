@@ -206,16 +206,32 @@ getCountryData('germany');
 // 'https://api.ip2loc.com/5mfjHIKWofkYx7aFgEyPZa63HACTagM3/detect?include=country_name'
 // `https://restcountries.eu/rest/v2/name/${dataGeo.country_name_}`
 
-const get3countries = async function (c1, c2, c3) {
-  try {
-    const data = await Promise.all([
-      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
-    ]);
-    console.log(data.map(d => d[0].capital));
-  } catch (err) {
-    console.error(err);
-  }
+// const get3countries = async function (c1, c2, c3) {
+//   try {
+//     const data = await Promise.all([
+//       getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+//       getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+//       getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+//     ]);
+//     console.log(data.map(d => d[0].capital));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+// get3countries('hungary', 'turkey', 'romania');
+
+// Race
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Túl hosszú'));
+    }, sec * 1000);
+  });
 };
-get3countries('hungary', 'turkey', 'romania');
+
+Promise.race([
+  getJSON('https://restcountries.eu/rest/v2/name/hungary'),
+  timeout(1),
+])
+  .then(res => console.log(res[0].capital))
+  .catch();
