@@ -26,11 +26,20 @@ const renderError = function (msg) {
   countriesContainer.style.opacity = 1;
 };
 
-const getJSON = function (url, errorMsg = 'Hiba.') {
-  return fetch(url).then(response => {
-    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
-    return response.json();
-  });
+// then-nel
+// const getJSON = function (url, errorMsg = 'Hiba.') {
+//   return fetch(url).then(response => {
+//     if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+//     return response.json();
+//   });
+// };
+
+// async-kel
+const getJSON = async function (url, errorMsg = 'Hiba.') {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+  const data = await response.json();
+  return data;
 };
 
 ////////////////////////////////
@@ -204,10 +213,9 @@ const get3countries = async function (c1, c2, c3) {
       getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
       getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
     ]);
-    console.log( .map(d => d[0].capital));
-  } catch (error) {
+    console.log(data.map(d => d[0].capital));
+  } catch (err) {
     console.error(err);
   }
 };
-
-get3countries('hungary', 'portugal', 'germany');
+get3countries('hungary', 'turkey', 'romania');
