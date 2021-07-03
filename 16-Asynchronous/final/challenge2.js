@@ -23,6 +23,7 @@ TEST DATA: Images in the img folder. Test the error handler by passing a wrong i
 
 GOOD LUCK 😀
 */
+
 const imgClass = document.querySelector('.images');
 const wait = function (seconds) {
   return new Promise(function (resolve) {
@@ -44,5 +45,21 @@ const createImage = function (imgPath) {
     });
   });
 };
-
-createImage('img/img-1.jpg');
+let currentImg;
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+  })
+  .catch(err => console.error(err));
