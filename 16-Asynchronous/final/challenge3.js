@@ -18,6 +18,7 @@ TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn of
 GOOD LUCK 😀
 */
 const imgClass = document.querySelector('.images');
+
 const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
@@ -42,10 +43,9 @@ const createImage = function (imgPath) {
 const loadNPause = async function () {
   try {
     let img = await createImage('img/img-1.jpg');
-    console.log(img);
     await wait(2);
     img.style.display = 'none';
-    await createImage('img/img-2.jpg');
+    img = await createImage('img/img-2.jpg');
     await wait(2);
     img.style.display = 'none';
   } catch (err) {
