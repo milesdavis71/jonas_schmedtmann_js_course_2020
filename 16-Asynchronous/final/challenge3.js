@@ -19,10 +19,12 @@ GOOD LUCK 😀
 */
 const imgClass = document.querySelector('.images');
 
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
-  });
+const wait = function (sec) {
+  {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, sec * 1000);
+    });
+  }
 };
 
 const createImage = function (imgPath) {
@@ -35,21 +37,26 @@ const createImage = function (imgPath) {
       resolve(img);
     });
     img.addEventListener('error', function () {
-      reject(new Error('Nem található a kép'));
+      reject(new Error('Nincs ilyen kép.'));
     });
   });
 };
 
-const loadNPause = async function () {
-  try {
-    let img = await createImage('img/img-1.jpg');
-    await wait(2);
-    img.style.display = 'none';
-    img = await createImage('img/img-2.jpg');
-    await wait(2);
-    img.style.display = 'none';
-  } catch (err) {
-    console.error(err);
-  }
+// const loadNPause = async function () {
+//   let img = await createImage('img/img-1.jpg');
+//   await wait(2);
+//   img.style.display = 'none';
+//   img = await createImage('img/img-2.jpg');
+//   await wait(2);
+//   img.style.display = 'none';
+// };
+
+// loadNPause();
+
+const loadAll = async function (imgArr) {
+  const imgs = imgArr.map(async img => await createImage(img));
+  const imgEl = await Promise.all(imgs);
+
+  imgEl.forEach(img => console.log(img.classList));
 };
-loadNPause();
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
