@@ -14,3 +14,5 @@ const totalPrice = 237;
 const totalQuantity = 5;
 
 export { totalPrice, totalQuantity };
+export.addToCart = function(){}
+const { addToCart } = require('./shoppingCart_.js');
