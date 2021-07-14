@@ -1,5 +1,5 @@
-import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
-import xxx from "./node_modules/lodash-es/cloneDeep.js";
+import cloneDeep from "lodash";
+
 const state = {
   cart: [
     { product: "pizza", quantity: 5 },
