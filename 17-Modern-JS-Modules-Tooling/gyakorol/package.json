@@ -4,11 +4,16 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "lodash.js": "0.0.1-security"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
