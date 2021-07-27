@@ -22,7 +22,9 @@ const imgClass = document.querySelector('.images');
 const wait = function (sec) {
   {
     return new Promise(function (resolve) {
-      setTimeout(resolve, sec * 1000);
+      setTimeout(() => {
+        resolve;
+      }, sec * 1000);
     });
   }
 };
