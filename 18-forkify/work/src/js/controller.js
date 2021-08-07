@@ -19,7 +19,7 @@ const controlRecipes = async function () {
     // A recept megjelenítése
     recipeView.render(model.state.recipe);
   } catch (err) {
-    alert(err);
+    recipeView.renderError();
   }
 };
 const init = function () {
