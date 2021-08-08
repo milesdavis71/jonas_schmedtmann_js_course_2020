@@ -28,7 +28,6 @@ const controlSearchResults = async function () {
 
     // 3) Render search results
     console.log(model.state.search.results);
-    searchView.clearInput();
   } catch (err) {
     console.log(err);
   }
