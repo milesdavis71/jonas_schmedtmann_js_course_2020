@@ -3,6 +3,18 @@ import icons from 'url:../../img/icons.svg';
 
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
+
+  _generateMarkupButtonNext() {
+    const currPage = this._data.page;
+    return `
+    <button class="btn--inline pagination__btn--next">
+    <span>Page ${currPage + 1}</span>
+    <svg class="search__icon">
+      <use href="${icons}#icon-arrow-right"></use>
+    </svg>
+    </button>
+    `;
+  }
   _generateMarkup() {
     const currPage = this._data.page;
     const numPages = Math.ceil(
@@ -12,14 +24,7 @@ class PaginationView extends View {
 
     //   Page 1st and others
     if (currPage === 1 && numPages > 1) {
-      return `
-      <button class="btn--inline pagination__btn--next">
-        <span>Page ${currPage + 1}</span>
-        <svg class="search__icon">
-          <use href="${icons}#icon-arrow-right"></use>
-        </svg>
-    </button>
-      `;
+      return this._generateMarkupButtonNext();
     }
 
     //   Last page
