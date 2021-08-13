@@ -7,7 +7,9 @@ class PaginationView extends View {
   _generateMarkupButtonNext() {
     const currPage = this._data.page;
     return `
-    <button class="btn--inline pagination__btn--next">
+    <button data-goto="${
+      currPage + 1
+    }" class="btn--inline pagination__btn--next">
     <span>Page ${currPage + 1}</span>
     <svg class="search__icon">
       <use href="${icons}#icon-arrow-right"></use>
@@ -18,7 +20,9 @@ class PaginationView extends View {
   _generateMarkupButtonPrev() {
     const currPage = this._data.page;
     return `
-    <button class="btn--inline pagination__btn--prev">
+    <button data-goto="${
+      currPage - 1
+    }" class="btn--inline pagination__btn--prev">
       <svg class="search__icon">
         <use href="${icons}#icon-arrow-left"></use>
       </svg>
@@ -26,6 +30,18 @@ class PaginationView extends View {
     </button>
   `;
   }
+
+  addHandlerClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--inline');
+      if (!btn) return;
+      console.log(btn);
+      const goToPage = +btn.dataset.goto;
+      console.log(goToPage);
+      handler();
+    });
+  }
+
   _generateMarkup() {
     const currPage = this._data.page;
     const numPages = Math.ceil(
